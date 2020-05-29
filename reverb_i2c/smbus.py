@@ -4,6 +4,8 @@ import json
 I2C_SMBUS_BLOCK_MAX = 32
 
 PROJECT_ROOT = os.path.abspath(os.getcwd())
+if "pfs" not in PROJECT_ROOT:
+    raise RuntimeError("This package must be run within the TJREVERB pFS directory!")
 while not PROJECT_ROOT.endswith("pfs"):
     PROJECT_ROOT = os.path.dirname(PROJECT_ROOT)
 PROJECT_ROOT = os.path.dirname(PROJECT_ROOT, "pfs-output")
