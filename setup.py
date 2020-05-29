@@ -6,7 +6,7 @@ with open("README.rst", "r") as f:
 
 setup(
     name="reverb_i2c",
-    version="1.1.0",
+    version="1.1.1",
     license="GPL",
     packages=find_packages(),
     author="tjreverb",
