@@ -18,6 +18,8 @@ environment.
 Quick Start Testing
 -------------------
 
-To install this package: ``shell script pip install reverb-i2c`` \* The
-conventional ``smbus2`` package, if present will be overridden by
-installing this package
+To install this package:
+
+``pip install reverb-i2c``
+
+* The conventional smbus2 package, if present will be overridden by installing this package
