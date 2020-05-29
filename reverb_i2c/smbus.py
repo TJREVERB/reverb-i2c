@@ -1,4 +1,5 @@
 import os
+import json
 
 I2C_SMBUS_BLOCK_MAX = 32
 
@@ -14,8 +15,6 @@ class SMBus:
         self.open(bus)
 
     def open(self, bus):
-        if os.path.exists(PROJECT_ROOT):
-            os.makedirs(PROJECT_ROOT)
         self.path = os.path.join(PROJECT_ROOT, f"i2c-{bus}")
 
     def close(self):
@@ -24,17 +23,12 @@ class SMBus:
             self.fd = None
 
     def _read_address(self, addr):
-        register = {}
-        with open(os.path.join(self.path, f"{addr}.i2c"), 'r') as r:
-            for line in r.read().splitlines():
-                parts = line.split(';')
-                register[parts[0]] = eval(parts[1])
-        return register
+        with open(os.path.join(self.path, f"{addr}.state"), 'r') as r:
+            return json.load(r)
 
     def _write_address(self, addr, registers):
-        with open(os.path.join(self.path, f"{addr}.i2c", "w")) as w:
-            for x, y in registers.values():
-                w.write(f"{x};{str(y)}")
+        with open(os.path.join(self.path, f"{addr}.command"), "w") as w:
+            json.dump(registers, w)
 
     def read_i2c_block_data(self, address, value, length):
         if length > I2C_SMBUS_BLOCK_MAX:
