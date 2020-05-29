@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="reverb_i2c",
-    version="1.0",
+    version="1.0.1",
     license="GPL",
     packages=find_packages(),
     author="tjreverb",
